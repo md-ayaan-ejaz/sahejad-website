@@ -1,52 +1,73 @@
-import { motion } from "motion/react"
+'use client'
+import { useState } from 'react';
+import { User, Briefcase, Building } from 'lucide-react'
+import ProfileTab from '@/components/ProfileTab'
+import ExperienceTab from '@/components/ExperienceTab'
+import AboutAddamTab from '@/components/AboutCompanies'
+import Image from 'next/image'
 
-export default function Home() {
+export default function ProfilePage() {
+  const [activeTab, setActiveTab] = useState('profile')
+
   return (
-    <main className="min-h-screen bg-gray-900 text-white p-8">
-      <section className="text-center py-24">
-        {/* <motion.h1
-          className="text-5xl font-bold"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Hi, I'm Thariya
-        </motion.h1> */}
-        {/* <motion.p
-          className="mt-4 text-lg text-gray-300"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          A passionate web developer who loves clean design and smooth animations.
-        </motion.p> */}
-      </section>
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-slate-900 text-slate-900 p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Glassmorphism container */}
+        <div className="backdrop-blur-lg bg-white/10 rounded-2xl shadow-xl overflow-hidden">
+          {/* Header */}
+          <div className="p-6 md:p-8 border-b border-white/10">
+            <div className="flex items-center space-x-4">
+              <div className="w-20 h-20 relative rounded-full overflow-hidden border-2 border-white/20">
+                <Image
+                  src="https://quickshine.co/assets/founder.jpeg"
+                  alt="Profile Logo"
+                  width={100}
+                  height={100}
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold text-[#ECEFCA]">Sahejad Thariya</h1>
+                <p className="text-lg md:text-xl text-[#EFEEEA] mt-1">Senior Frontend Engineer & Entrepreneur</p>
+              </div>
+            </div>
+          </div>
 
-      <section className="max-w-3xl mx-auto py-16">
-        <h2 className="text-3xl font-semibold mb-4">About Me</h2>
-        <p className="text-gray-300">
-          I'm a frontend developer skilled in React, Next.js, and TailwindCSS. I enjoy turning complex problems into simple, beautiful, and intuitive interfaces.
-        </p>
-      </section>
+          {/* Navigation */}
+          <div className="flex border-b border-white/10">
+            <button
+              onClick={() => setActiveTab('profile')}
+              className={`px-6 py-4 font-medium flex items-center space-x-2 hover:cursor-pointer ${activeTab === 'profile' ? 'text-white border-b-2 border-white' : 'text-gray-300'}`}
+            >
+              <User className="h-5 w-5" />
+              <span>Profile</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('experience')}
+              className={`px-6 py-4 font-medium flex items-center space-x-2 hover:cursor-pointer ${activeTab === 'experience' ? 'text-white border-b-2 border-white' : 'text-gray-300'}`}
+            >
+              <Briefcase className="h-5 w-5" />
+              <span>Experience</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('addam')}
+              className={`px-6 py-4 font-medium flex items-center space-x-2 hover:cursor-pointer ${activeTab === 'addam' ? 'text-white border-b-2 border-white' : 'text-gray-300'}`}
+            >
+              <Building className="h-5 w-5" />
+              <span>About Companies</span>
+            </button>
+          </div>
 
-      <section className="max-w-3xl mx-auto py-16">
-        <h2 className="text-3xl font-semibold mb-4">Projects</h2>
-        <ul className="space-y-4">
-          <li className="border border-gray-700 p-4 rounded-xl bg-gray-800">
-            <h3 className="text-xl font-medium">Portfolio Website</h3>
-            <p className="text-gray-400">A modern personal site built with Next.js and Framer Motion.</p>
-          </li>
-          <li className="border border-gray-700 p-4 rounded-xl bg-gray-800">
-            <h3 className="text-xl font-medium">Task Manager App</h3>
-            <p className="text-gray-400">A productivity app using React, Zustand, and Tailwind.</p>
-          </li>
-        </ul>
-      </section>
+          {/* Content */}
+          <div className="p-6 md:p-8">
+            {/* Profile Section */}
+            {activeTab === 'profile' && <ProfileTab />}
+            {activeTab === 'experience' && <ExperienceTab />}
+            {activeTab === 'addam' && <AboutAddamTab />}
 
-      <section className="max-w-3xl mx-auto py-16">
-        <h2 className="text-3xl font-semibold mb-4">Contact</h2>
-        <p className="text-gray-300">Feel free to reach out via email at <a href="mailto:hello@thariya.dev" className="underline text-blue-400">hello@thariya.dev</a>.</p>
-      </section>
-    </main>
-  );
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }

@@ -24,9 +24,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="https://quickshine.co/assets/founder.jpeg" sizes="16x16" type="image/png" />
+        <link rel="icon" href="https://quickshine.co/assets/founder.jpeg" sizes="32x32" type="image/png" />
+        <link rel="icon" href="https://quickshine.co/assets/founder.jpeg" sizes="512x512" type="image/png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
         {children}
       </body>
     </html>
